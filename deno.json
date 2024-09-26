@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "run": "deno run -A main.ts"
+    "run": "deno run -A main.ts",
+    "firefox": "deno run -A firefox.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
