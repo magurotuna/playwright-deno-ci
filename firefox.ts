@@ -4,10 +4,12 @@ async function main() {
   await using browser = await firefox.launch({
     headless: true,
     args: [
-      "--disable-gpu",
       "--no-sandbox",
-      "--disable-dev-shm-usage",
     ],
+    firefoxUserPrefs: {
+      "gfx.webrender.all": false,
+      "media.hardware-video-decoding.enabled": false,
+    },
   });
   await using page = await browser.newPage();
   await page.goto("https://example.com");
