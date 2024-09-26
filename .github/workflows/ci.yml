@@ -21,7 +21,7 @@ jobs:
         uses: denoland/setup-deno@v1
 
       - name: Install chromium
-        run: deno run -A npm:playwright@1.47.2 --with-deps chromium
+        run: deno run -A npm:playwright@1.47.2 install --with-deps chromium
 
       - name: Run
         run: deno task run
