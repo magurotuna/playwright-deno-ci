@@ -10,8 +10,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  ubuntu:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v1
+
+      - name: Install chromium
+        run: deno run -A npm:playwright@1.47.2 install --with-deps chromium
+
+      - name: Run
+        run: deno task run
+
+  mac:
+    runs-on: macos-latest
 
     steps:
       - name: Checkout Repository
