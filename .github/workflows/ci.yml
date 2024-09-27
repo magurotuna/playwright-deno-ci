@@ -15,6 +15,7 @@ jobs:
       matrix:
         browser: [chromium, firefox]
         os: [ubuntu-latest, macos-latest]
+        deno-version: [1.46.3, 2.0.0-rc.6, canary]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -25,6 +26,8 @@ jobs:
 
       - name: Install Deno
         uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno-version }}
 
       - name: Install ${{ matrix.browser }}
         run: deno run -A npm:playwright@1.47.2 install --with-deps ${{ matrix.browser }}
