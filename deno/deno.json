@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "run": "deno run -A main.ts",
+    "chromium": "deno run -A chromium.ts",
     "firefox": "deno run -A firefox.ts"
   },
   "imports": {

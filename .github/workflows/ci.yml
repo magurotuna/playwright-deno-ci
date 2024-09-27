@@ -10,8 +10,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
+  deno:
+    strategy:
+      matrix:
+        browser: [chromium, firefox]
+        os: [ubuntu-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout Repository
@@ -20,40 +25,8 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v1
 
-      - name: Install chromium
-        run: deno run -A npm:playwright@1.47.2 install --with-deps chromium
+      - name: Install ${{ matrix.browser }}
+        run: deno run -A npm:playwright@1.47.2 install --with-deps ${{ matrix.browser }}
 
       - name: Run
-        run: deno task run
-
-  ubuntu-firefox:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
-
-      - name: Install chromium
-        run: deno run -A npm:playwright@1.47.2 install --with-deps firefox
-
-      - name: Run
-        run: deno task firefox
-
-  mac:
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
-
-      - name: Install chromium
-        run: deno run -A npm:playwright@1.47.2 install --with-deps chromium
-
-      - name: Run
-        run: deno task run
+        run: deno task ${{ matrix.browser }}
