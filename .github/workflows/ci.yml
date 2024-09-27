@@ -32,3 +32,31 @@ jobs:
       - name: Run
         working-directory: ./deno
         run: deno task ${{ matrix.browser }}
+
+  node:
+    strategy:
+      matrix:
+        browser: [chromium, firefox]
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+
+      - name: npm ci
+        working-directory: ./node
+        run: npm ci
+
+      - name: Install Playwright Browser
+        working-directory: ./node
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run
+        working-directory: ./deno
+        run: node index.mjs ${{ matrix.browser }}
