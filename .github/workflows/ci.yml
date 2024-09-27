@@ -58,5 +58,5 @@ jobs:
         run: npx playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run
-        working-directory: ./deno
+        working-directory: ./node
         run: node index.mjs ${{ matrix.browser }}
