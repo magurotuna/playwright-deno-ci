@@ -29,4 +29,5 @@ jobs:
         run: deno run -A npm:playwright@1.47.2 install --with-deps ${{ matrix.browser }}
 
       - name: Run
+        working-directory: ./deno
         run: deno task ${{ matrix.browser }}
