@@ -1,0 +1,16 @@
+{
+  "name": "playwright-node-ci",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "chromium": "node index.mjs chromium",
+    "firefox": "node index.mjs firefox"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "playwright": "^1.47.2"
+  }
+}
