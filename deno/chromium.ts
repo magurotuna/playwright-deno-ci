@@ -4,7 +4,7 @@ async function main() {
   await using browser = await chromium.launch({
     headless: true,
   });
-  const page = await browser.newPage();
+  await using page = await browser.newPage();
   await page.goto("https://deno.com");
   console.log(await page.title());
 }
