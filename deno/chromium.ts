@@ -1,9 +1,12 @@
 import { chromium } from "npm:playwright@1.47.2";
 
 async function main() {
-  await using _browser = await chromium.launch({
+  await using browser = await chromium.launch({
     headless: true,
   });
+  const page = await browser.newPage();
+  await page.goto("https://deno.com");
+  console.log(await page.title());
 }
 
 if (import.meta.main) {
